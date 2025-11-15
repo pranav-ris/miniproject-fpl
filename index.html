@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Fuel – Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4ff;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background: #003B8E;
+      color: white;
+      padding: 15px;
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+    }
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 { color: #003B8E; }
+    input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      width: 85%;
+      padding: 12px;
+      background: #003B8E;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover { background: #001f50; }
+    .welcome { font-size: 18px; margin-left: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div>Focus Fuel</div>
+    <div class="welcome" id="userNameDisplay"></div>
+  </div>
+
+  <div class="container" id="loginContainer">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter your name">
+    <br>
+    <button onclick="login()">LOGIN</button>
+  </div>
+
+  <div class="container" id="welcomeContainer" style="display:none;">
+    <h2>Welcome, <span id="welcomeName"></span>!</h2>
+    <p>You are now logged in.</p>
+    <a href="index1.html">Visit Website</a>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    // Check if user is already logged in
+    window.onload = function() {
+      const username = localStorage.getItem('username');
+      if(username) showWelcome(username);
+    }
+
+    function login() {
+      const username = document.getElementById('username').value.trim();
+      if(username === "") {
+        alert("Please enter your name");
+        return;
+      }
+      localStorage.setItem('username', username);
+      showWelcome(username);
+    }
+
+    function showWelcome(username) {
+      document.getElementById('loginContainer').style.display = 'none';
+      document.getElementById('welcomeContainer').style.display = 'block';
+      document.getElementById('welcomeName').innerText = username;
+      document.getElementById('userNameDisplay').innerText = `Hello, ${username}`;
+    }
+
+    function logout() {
+      localStorage.removeItem('username');
+      document.getElementById('loginContainer').style.display = 'block';
+      document.getElementById('welcomeContainer').style.display = 'none';
+      document.getElementById('userNameDisplay').innerText = '';
+    }
+  </script>
+
+</body>
+</html>

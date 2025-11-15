@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Fuel – Video Links</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f0f4ff;
+    }
+    .navbar {
+      background: #003B8E;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    h2 {
+      color: #003B8E;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .subject-section {
+      margin-bottom: 40px;
+    }
+    .subject-title {
+      font-size: 24px;
+      color: #003B8E;
+      margin-bottom: 15px;
+    }
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+    .topic-box {
+      background: #ffefc2;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .topic-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    /* Different colors for different subjects */
+    .physics { background: #ff9999; }
+    .chemistry { background: #99ccff; }
+    .maths { background: #cc99ff; }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">Focus Fuel – Topic-wise Video Links</div>
+
+  <div class="container">
+
+    <h2>Physics Topics</h2>
+    <div class="subject-section">
+      <div class="topic-grid">
+        <div class="topic-box physics" onclick="openVideo('https://www.youtube.com/watch?v=phy_topic1')">Mechanics</div>
+        <div class="topic-box physics" onclick="openVideo('https://www.youtube.com/watch?v=phy_topic2')">Electrodynamics</div>
+        <div class="topic-box physics" onclick="openVideo('https://www.youtube.com/watch?v=phy_topic3')">Optics</div>
+        <div class="topic-box physics" onclick="openVideo('https://www.youtube.com/watch?v=phy_topic4')">Thermodynamics</div>
+        <div class="topic-box physics" onclick="openVideo('https://www.youtube.com/watch?v=phy_topic5')">Modern Physics</div>
+      </div>
+    </div>
+
+    <h2>Chemistry Topics</h2>
+    <div class="subject-section">
+      <div class="topic-grid">
+        <div class="topic-box chemistry" onclick="openVideo('https://www.youtube.com/watch?v=chem_topic1')">Physical Chemistry</div>
+        <div class="topic-box chemistry" onclick="openVideo('https://www.youtube.com/watch?v=chem_topic2')">Organic Chemistry</div>
+        <div class="topic-box chemistry" onclick="openVideo('https://www.youtube.com/watch?v=chem_topic3')">Inorganic Chemistry</div>
+        <div class="topic-box chemistry" onclick="openVideo('https://www.youtube.com/watch?v=chem_topic4')">Electrochemistry</div>
+        <div class="topic-box chemistry" onclick="openVideo('https://www.youtube.com/watch?v=chem_topic5')">Chemical Kinetics</div>
+      </div>
+    </div>
+
+    <h2>Maths Topics</h2>
+    <div class="subject-section">
+      <div class="topic-grid">
+        <div class="topic-box maths" onclick="openVideo('https://www.youtube.com/watch?v=math_topic1')">Calculus</div>
+        <div class="topic-box maths" onclick="openVideo('https://www.youtube.com/watch?v=math_topic2')">Algebra</div>
+        <div class="topic-box maths" onclick="openVideo('https://www.youtube.com/watch?v=math_topic3')">Coordinate Geometry</div>
+        <div class="topic-box maths" onclick="openVideo('https://www.youtube.com/watch?v=math_topic4')">Trigonometry</div>
+        <div class="topic-box maths" onclick="openVideo('https://www.youtube.com/watch?v=math_topic5')">Vectors & 3D Geometry</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">© 2025 Focus Fuel</div>
+
+  <script>
+    function openVideo(url) {
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
