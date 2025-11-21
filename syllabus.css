@@ -1,0 +1,119 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #f7f7ff;
+    color: #1a1a1a;
+    transition: 0.3s;
+}
+
+body.dark {
+    background: #121426;
+    color: white;
+}
+
+/* Navbar same as homepage */
+.logo-name { display: flex; align-items: center; gap: 12px; }
+.site-name { font-size: 24px; font-weight: 600; }
+.navbar {
+    background: linear-gradient(135deg,#1a1f4c,#3a44ff);
+    padding: 12px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: white;
+}
+.logo { height: 50px; width: 50px; border-radius: 8px; }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.logout-btn {
+    padding: 6px 12px; border:none; border-radius:6px; background:#ffffff33; color:white; cursor:pointer;
+}
+.logout-btn:hover { background:#ffffff55; }
+.theme-btn {
+    width:48px; height:48px; border-radius:50%; border:none;
+    background:linear-gradient(135deg,#3b82f6,#60a5fa);
+    cursor:pointer; color:white; font-size:20px;
+}
+.theme-btn:hover { transform: scale(1.1); }
+
+
+
+/* Marquee */
+.marquee { background: #93c5fd; padding: 10px; text-align:center; font-weight:600; }
+
+/* Page title */
+.section-title { text-align:center; margin:25px 0; font-size:28px; }
+
+/* Exam Boxes */
+.exam-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+/* Exam Boxes with Gradient Backgrounds */
+/* Exam Boxes with Gradient Backgrounds */
+.exam-box {
+    width: 200px;
+    height: 120px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: white; /* default text color for light mode */
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s, color 0.3s;
+    text-decoration: none; /* for anchor tags */
+}
+
+/* Hover effect */
+.exam-box:hover { transform: translateY(-5px); }
+
+/* Light Mode Gradients */
+.color1 { background: linear-gradient(135deg, #f97316, #fb923c); color:white; } /* Orange */
+.color2 { background: linear-gradient(135deg, #16a34a, #4ade80); color:white; } /* Green */
+.color3 { background: linear-gradient(135deg, #e11d48, #f472b6); color:white; } /* Pink */
+.color4 { background: linear-gradient(135deg, #6366f1, #818cf8); color:white; } /* Purple */
+.color5 { background: linear-gradient(135deg, #facc15, #fde68a); color:#1a1a1a; } /* Yellow */
+
+/* Dark Mode Gradients and Bright Text */
+body.dark .color1 { background: linear-gradient(135deg, #a4550f, #d97706); color:#ffedcc; }
+body.dark .color2 { background: linear-gradient(135deg, #064e3b, #10b981); color:#ccffeb; }
+body.dark .color3 { background: linear-gradient(135deg, #831843, #be185d); color:#ffcce6; }
+body.dark .color4 { background: linear-gradient(135deg, #312e81, #4f46e5); color:#dcdcff; }
+body.dark .color5 { background: linear-gradient(135deg, #78350f, #facc15); color:#fff7cc; }
+
+/* Responsive for mobile */
+@media(max-width:700px){
+    .exam-box { width:90%; }
+}
+
+/* Footer same as homepage */
+.footer {
+    background: linear-gradient(135deg,#1a1f4c,#3a44ff);
+    padding:30px; color:white;
+    display:flex; justify-content:space-between; flex-wrap:wrap;
+}
+.footer-logo { height:50px; width:50px; margin-bottom:10px; transition: transform 0.3s; }
+.footer-logo:hover { transform: scale(1.1); }
+.footer-center a { color:white; display:block; margin:6px 0; text-decoration:none; transition:0.3s; }
+.footer-center a:hover { color:#fbbf24; transform: translateX(5px); }
+.footer-left,.footer-right { transition: transform 0.3s; }
+.footer-left:hover,.footer-right:hover { transform: scale(1.02); }
+.copyright { text-align:center; padding:10px; background:#1e3a8a; color:white; transition:0.3s; }
+.copyright:hover { background:#3b82f6; }
+
+/* Dark mode for exam boxes and marquee */
+body.dark .exam-box { filter: brightness(0.8); }
+body.dark .marquee { background:#2563eb; color:white; }
+
+/* Responsive for mobile */
+@media(max-width:700px){
+    .exam-box { width:90%; }
+}

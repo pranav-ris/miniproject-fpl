@@ -1,0 +1,86 @@
+/* GENERAL SYLLABUS STYLING */
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f7f7ff;
+    color: #1a1a1a;
+    transition: 0.3s;
+}
+body.dark { background:#121426; color:#fff; }
+
+/* MARQUEE */
+.marquee {
+    background: #93c5fd; padding: 10px; text-align:center; font-weight:600; border-radius:6px; margin:15px 20px;
+}
+body.dark .marquee { background:#2563eb; color:#fff; }
+
+/* PAGE TITLE */
+.section-title { text-align:center; margin:25px 0; font-size:28px; font-weight:700; }
+
+/* SYLLABUS CONTAINER */
+.syllabus-container { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; padding:20px; }
+.syllabus-box { width:300px; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); transition:transform 0.3s, color 0.3s, background 0.3s; }
+.syllabus-box:hover { transform: translateY(-5px); }
+
+/* ICONS */
+.syllabus-box i { display:block; margin-bottom:12px; color:white; }
+
+/* GRADIENTS - LIGHT MODE */
+.physics { background: linear-gradient(135deg,#f97316,#fb923c); color:white; }
+.chemistry { background: linear-gradient(135deg,#16a34a,#4ade80); color:white; }
+.maths { background: linear-gradient(135deg,#6366f1,#818cf8); color:white; }
+
+/* GRADIENTS - DARK MODE */
+body.dark .physics { background: linear-gradient(135deg,#a4550f,#d97706); color:#ffedcc; }
+body.dark .chemistry { background: linear-gradient(135deg,#064e3b,#10b981); color:#ccffeb; }
+body.dark .maths { background: linear-gradient(135deg,#312e81,#4f46e5); color:#dcdcff; }
+
+/* HEADINGS AND LISTS */
+.syllabus-box h2 { margin-bottom:12px; text-align:center; }
+.syllabus-box ul { list-style-type: disc; margin-left:20px; }
+.syllabus-box li { margin-bottom:6px; }
+
+/* COLLAPSIBLE BUTTON */
+.collapsible {
+    background: rgba(255,255,255,0.2);
+    color: inherit;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius:6px;
+    outline: none;
+    font-size: 16px;
+    margin: 8px 0;
+    transition: 0.3s;
+}
+.collapsible:hover { background: rgba(255,255,255,0.35); }
+
+
+
+content a{
+color:white;
+}
+/* COLLAPSIBLE CONTENT */
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-left:10px;
+}
+/* VIDEO LINK STYLES */
+.syllabus-container .content ul li a {
+    color: var(--accent, #ffffff); /* default accent color */
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.syllabus-container .content ul li a:hover {
+    color: #e6b503; /* hover color */
+    text-decoration: underline;
+}
+
+
+/* RESPONSIVE */
+@media(max-width:700px){ .syllabus-box{ width:90%; margin:10px 0; } }

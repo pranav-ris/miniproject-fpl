@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List - Focus Fuel</title>
+
+<style>
+    /* ---------------- COLORS ---------------- */
+    :root {
+        --bg: #f3f8ff;
+        --card: #ffffff;
+        --text: #333;
+        --accent: #5c8aff;
+        --accent-light: #dbe6ff;
+        --border: #cfd9ff;
+    }
+
+    body.dark {
+        --bg: #1b1c1f;
+        --card: #26282c;
+        --text: #f1f1f1;
+        --accent: #7aa2ff;
+        --accent-light: #3a3d46;
+        --border: #444;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        transition: 0.3s;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(135deg,#1a1f4c,#3a44ff);
+        padding: 12px 20px;
+        color: white;
+    }
+    .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .logo { height: 50px; width: 50px; border-radius: 8px; }
+    .site-name { font-size: 24px; font-weight: 600; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .logout-btn {
+        padding: 6px 12px; border:none; border-radius:6px; background:#ffffff33; color:white; cursor:pointer;
+    }
+    .logout-btn:hover { background:#ffffff55; }
+    .theme-btn {
+        width:48px; height:48px; border-radius:50%; border:none;
+        background:linear-gradient(135deg,#3b82f6,#60a5fa);
+        cursor:pointer; color:white; font-size:20px;
+    }
+    .theme-btn:hover { transform: scale(1.1); }
+
+    /* ---------------- TODO SECTION ---------------- */
+    .todo-section {
+        max-width: 800px;
+        margin: 100px auto 50px;
+        padding: 20px;
+    }
+    .todo-container {
+        background: var(--card);
+        padding: 30px;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    }
+    .todo-input { display: flex; gap: 10px; margin-top: 15px; }
+    .todo-input input {
+        flex: 1;
+        padding: 12px;
+        background: var(--accent-light);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+    }
+    .todo-input button {
+        padding: 12px 18px;
+        border: none;
+        background: var(--accent);
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    /* ---------------- TASK LIST ---------------- */
+    #taskList { margin-top: 20px; list-style: none; padding: 0; }
+    .task {
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid var(--border);
+        padding: 14px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: 0.2s;
+    }
+    .task.completed { text-decoration: line-through; opacity: 0.7; }
+    .task-btn {
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        margin-left: 8px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    .complete-btn { background: #4caf50; color: white; }
+    .delete-btn { background: #e74c3c; color: white; }
+
+    /* ---------------- PROGRESS BOX ---------------- */
+    .progress-box {
+        margin-top: 30px;
+        padding: 25px;
+        background: var(--card);
+        border-radius: 12px;
+        border: 2px solid var(--border);
+        text-align: center;
+    }
+    .progress-bar {
+        width: 100%;
+        height: 25px;
+        background: var(--accent-light);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 10px;
+    }
+    .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--accent);
+        transition: 0.3s;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+        background: linear-gradient(135deg,#1a1f4c,#3a44ff);
+        padding:30px; color:white;
+        display:flex; justify-content:space-between; flex-wrap:wrap;
+    }
+    .footer-logo { height:50px; width:50px; margin-bottom:10px; transition: transform 0.3s; }
+    .footer-logo:hover { transform: scale(1.1); }
+    .footer-center a { color:white; display:block; margin:6px 0; text-decoration:none; transition:0.3s; }
+    .footer-center a:hover { color:#fbbf24; transform: translateX(5px); }
+    .footer-left,.footer-right { transition: transform 0.3s; }
+    .footer-left:hover,.footer-right:hover { transform: scale(1.02); }
+    .copyright { text-align:center; padding:10px; background:#1e3a8a; color:white; transition:0.3s; }
+    .copyright:hover { background:#3b82f6; }
+
+    /* ---------------- MOBILE ---------------- */
+    @media (max-width:600px) {
+        .todo-section { margin: 40px 10px; }
+        .todo-input { flex-direction: column; }
+        .todo-input button { width: 100%; }
+        .task { flex-direction: column; text-align: left; gap: 8px; }
+        .task div { width: 100%; display:flex; justify-content:flex-end; }
+    }
+</style>
+</head>
+
+<body class="light">
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-left">
+        <img src="logo1.jpeg" class="logo" alt="Focus Fuel Logo">
+        <h2 class="site-name">Focus Fuel</h2>
+    </div>
+    <div class="nav-right">
+        <button id="theme-toggle" class="theme-btn">🌙</button>
+        <button class="logout-btn">Logout</button>
+    </div>
+</header>
+
+<!-- TODO SECTION -->
+<section class="todo-section">
+    <div class="todo-container">
+        <h1>My To-Do List</h1>
+        <div class="todo-input">
+            <input type="text" id="taskInput" placeholder="Add a new task...">
+            <button id="addTaskBtn">Add Task</button>
+        </div>
+        <ul id="taskList"></ul>
+
+        <div class="progress-box">
+            <h3>Progress</h3>
+            <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+            <p id="progressText">0% Complete</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-left">
+        <img src="logo1.jpeg" class="footer-logo">
+        <h3>Focus Fuel</h3>
+        <p>123 Knowledge Park, Learning Avenue, Mumbai, India</p>
+    </div>
+    <div class="footer-center">
+        <h4>Features</h4>
+        <a href="syllabus.html">📘 Syllabus</a>
+    <a href="video.html">🎬 Topic Wise Videos</a>
+    <a href="mocktests.html">📝 Mock Tests</a>
+    <a href="units.html">📚 Units</a>
+    <a href="todo.html">📌 To-Do List</a>
+    </div>
+    <div class="footer-right">
+        <h4>Contact</h4>
+        <p>Email: support@focusfuel.com</p>
+        <p>Phone: +91 98765 43210</p>
+    </div>
+</footer>
+<div class="copyright">
+    © 2025 Focus Fuel. All Rights Reserved.
+</div>
+
+<script>
+/* ---------------- DARK MODE ---------------- */
+document.getElementById("theme-toggle").onclick = () => {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("darkMode", document.body.classList.contains("dark"));
+};
+if (localStorage.getItem("darkMode") === "true") {
+    document.body.classList.add("dark");
+}
+
+/* ---------------- TODO FUNCTIONALITY ---------------- */
+const taskInput = document.getElementById("taskInput");
+const addTaskBtn = document.getElementById("addTaskBtn");
+const taskList = document.getElementById("taskList");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+
+/* Task colors array */
+const taskColors = ['#ffebee','#e8f5e9','#fff3e0','#e3f2fd','#f3e5f5'];
+
+let tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function loadTasks() {
+    taskList.innerHTML = "";
+
+    tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.className = "task";
+        if(task.done) li.classList.add("completed");
+        li.style.backgroundColor = taskColors[index % taskColors.length];
+
+        li.innerHTML = `
+            <span>${task.text}</span>
+            <div>
+                <button class="task-btn complete-btn" onclick="toggleTask(${index})">✔</button>
+                <button class="task-btn delete-btn" onclick="deleteTask(${index})">✖</button>
+            </div>
+        `;
+
+        taskList.appendChild(li);
+    });
+
+    updateProgress();
+}
+
+addTaskBtn.onclick = () => {
+    const text = taskInput.value.trim();
+    if(text === "") return;
+
+    tasks.push({text, done:false});
+    taskInput.value="";
+    saveTasks();
+    loadTasks();
+};
+
+taskInput.addEventListener("keypress", e => {
+    if(e.key === "Enter") addTaskBtn.click();
+});
+
+function toggleTask(i) {
+    tasks[i].done = !tasks[i].done;
+    saveTasks();
+    loadTasks();
+}
+
+function deleteTask(i) {
+    tasks.splice(i,1);
+    saveTasks();
+    loadTasks();
+}
+
+function updateProgress() {
+    const total = tasks.length;
+    const done = tasks.filter(t=>t.done).length;
+    const percent = total===0?0:Math.round(done/total*100);
+    progressFill.style.width = percent + "%";
+    progressText.innerText = percent + "% Complete";
+}
+
+loadTasks();
+</script>
+</body>
+</html>
