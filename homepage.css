@@ -1,0 +1,162 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+body
+{background:#f7f7ff;
+    color:#1a1a1a;
+    transition:0.3s;
+}
+body.dark{background:#121426;color:#fff;}
+.logo-name{display:flex;align-items:center;gap:12px;}
+.site-name{font-size:24px;font-weight:600;}
+/* NAVBAR - Blue */
+.navbar{background:linear-gradient(135deg,#1a1f4c,#3a44ff);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;color:white;}
+.logo{height:50px;width:50px;border-radius:8px;}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.logout-btn{padding:6px 12px;border:none;border-radius:6px;background:#ffffff33;color:white;cursor:pointer;}
+.logout-btn:hover{background:#ffffff55;}
+.theme-btn{width:48px;height:48px;border-radius:50%;border:none;background:linear-gradient(135deg,#3b82f6,#60a5fa);cursor:pointer;color:white;font-size:20px;}
+.theme-btn:hover{transform:scale(1.1);}
+
+/* HAMBURGER MENU */
+.hamburger{font-size:28px;cursor:pointer;}
+.side-menu{position:fixed;top:0;right:-250px;width:230px;height:100vh;background:rgba(30,58,138,0.85);backdrop-filter:blur(8px);padding:30px 20px;transition:0.4s;display:flex;flex-direction:column;z-index:20;}
+.side-menu a{color:white;text-decoration:none;margin:8px 0;padding:6px;border-radius:5px;}
+.side-menu a:hover{background:rgba(255,255,255,0.25);}
+.side-menu.open {
+    right: 0;
+}
+
+/* MARQUEE */
+.marquee{background:#93c5fd;padding:10px;text-align:center;font-weight:600;}
+
+/* CAROUSEL */
+.carousel-container{position:relative;overflow:hidden;padding:40px 0;}
+.carousel{width:90%;margin:auto;text-align:center;position:relative;}
+.slides{display:none;padding:60px 20px;border-radius:12px;}
+.slides h1{font-size:26px;margin-bottom:12px;}
+
+/* FEATURES & EXAMS */
+.section-title{text-align:center;margin:25px 0;font-size:28px;}
+.feature-container,.exam-container{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;padding:20px;}
+
+/* FEATURE BOXES - Bright Colors with Icons */
+.feature-box{
+    width:260px;
+    background:#fef3c7;  /* bright yellow */
+    border:2px solid #fbbf24;
+    border-radius:12px;
+    padding:20px;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    transition:0.3s;
+    text-decoration: none;
+    color: black;
+}
+
+.feature-box i{font-size:28px;color:#f59e0b;}
+.feature-box:hover{transform:translateY(-5px);}
+
+/* EXAM BOXES - Bright Colors with Icons */
+.exam-box{
+    width:260px;
+    background:#d1fae5;  /* bright green */
+    border:2px solid #10b981;
+    border-radius:12px;
+    padding:20px;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    transition:0.3s;
+    text-decoration: none;
+    color: black;
+}
+.exam-box i{font-size:28px;color:#059669;}
+.exam-box:hover{transform:translateY(-5px);}
+
+/* ABOUT */
+.about{padding:30px;width:90%;margin:auto;background:#fff;border-radius:12px;border-left:6px solid #3b82f6;color:#1a1a1a;margin-bottom:30px;}
+.about ul{margin:10px 0 0 20px;}
+
+/* FOOTER - Blue */
+.footer {
+    background:linear-gradient(135deg,#1a1f4c,#3a44ff);
+    padding: 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    transition: 0.3s;
+}
+
+/* Footer Logo */
+.footer-logo {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+.footer-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Footer Center Links */
+.footer-center a {
+    color: white;
+    display: block;
+    margin: 6px 0;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.footer-center a:hover {
+    color: #fbbf24; /* Bright yellow on hover */
+    transform: translateX(5px);
+}
+
+/* Footer Right / Left Hover Effects */
+.footer-left, .footer-right {
+    transition: transform 0.3s;
+}
+.footer-left:hover, .footer-right:hover {
+    transform: scale(1.02);
+}
+
+/* Copyright */
+.copyright {
+    text-align: center;
+    padding: 10px;
+    background: #1e3a8a;
+    color: white;
+    transition: background 0.3s;
+}
+.copyright:hover {
+    background: #3b82f6; /* lighter blue on hover */
+}
+
+/* DARK MODE */
+body.dark .feature-box,body.dark .exam-box,body.dark .about{background:#1e293b;border-color:#3b82f6;color:white;}
+body.dark .marquee{background:#2563eb;color:white;}
+
+/* CAROUSEL */
+.carousel-container{position:relative;overflow:hidden;padding:40px 0;}
+.carousel{width:90%;margin:auto;text-align:center;position:relative;}
+.slides{display:none;padding:60px 20px;border-radius:12px;transition:0.5s;}
+.slides h1{font-size:26px;margin-bottom:12px;}
+
+/* Bright light theme */
+.slides.light1{background:linear-gradient(135deg,#ce3b12,#ffcc99);}
+.slides.light2{background:linear-gradient(135deg,#de2a9c,#db7478);}
+.slides.light3{background:linear-gradient(135deg,#203ddf,#a099ff);}
+
+/* Dark theme gradients */
+body.dark .slides.light1{background:linear-gradient(135deg,#4c2d91,#6d4cff);}
+body.dark .slides.light2{background:linear-gradient(135deg,#2d6d91,#4ca6ff);}
+body.dark .slides.light3{background:linear-gradient(135deg,#1a1f4c,#3a44ff);}
+
+/* MOBILE */
+@media(max-width:700px){.feature-box,.exam-box{width:90%;}}
+
