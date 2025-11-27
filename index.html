@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Focus Fuel - Login</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #ffffff;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 18px;
+        background: #ff2121;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        position: relative;
+    }
+
+    nav img {
+        width: 65px;
+        height: 65px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-right: 12px;
+    }
+
+    nav .title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #ffffff;
+        letter-spacing: 1px;
+    }
+
+    .box {
+        margin: auto;
+        width: 90%;
+        max-width: 360px;
+        background: white;
+        padding: 24px;
+        border-radius: 14px;
+        text-align: center;
+        box-shadow: 0px 4px 16px rgba(0,0,0,0.12);
+        border: 1px solid #eee;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+        color: #111;
+    }
+
+    .tagline {
+        color: #444;
+        margin-bottom: 18px;
+        font-size: 0.92rem;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #aaa;
+        border-radius: 8px;
+        font-size: 1rem;
+        margin-bottom: 12px;
+    }
+
+    #loginBtn { background: #ff2121; }
+    #visitBtn { background: #1a73e8; }
+    #logoutBtn { background: #ff2121; }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 10px;
+        transition: 0.2s;
+    }
+
+    button:hover { opacity: 0.85; }
+
+    #visitBtn, #logoutBtn {
+        display: none;
+    }
+
+    footer {
+        width: 100%;
+        background: #f6f6f6;
+        padding: 20px 10px;
+        margin-top: 20px;
+        text-align: center;
+        border-top: 1px solid #ddd;
+    }
+
+    .footer-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #111;
+        margin-bottom: 15px;
+    }
+
+    .features {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .feature {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #111;
+    }
+
+    .feature i {
+        font-size: 23px;
+        margin-bottom: 6px;
+        color: #ff2121;
+    }
+
+    @media (max-width: 480px) { .features { gap: 15px; } }
+
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <img src="logo1.jpeg" alt="Logo">
+    <div class="title">Focus Fuel</div>
+</nav>
+
+<!-- LOGIN CARD -->
+<div class="box">
+    <h1 id="welcomeText">Welcome</h1>
+    <div class="tagline" id="tagline">Helping you crack entrance exams with confidence</div>
+
+    <input id="nameInput" type="text" placeholder="Enter your name" />
+
+    <button id="loginBtn">Login</button>
+    <button id="visitBtn">Visit Website</button>
+    <button id="logoutBtn">Logout</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-title">We Provide</div>
+    <div class="features">
+        <div class="feature"><i class="fa fa-list-check"></i><br>To-Do List</div>
+        <div class="feature"><i class="fa fa-book"></i><br>Syllabus</div>
+        <div class="feature"><i class="fa fa-ruler"></i><br>Unit Conversion</div>
+        <div class="feature"><i class="fa fa-pen"></i><br>Mock Tests</div>
+        <div class="feature"><i class="fa fa-video"></i><br>Video Links</div>
+    </div>
+</footer>
+
+<!-- SCRIPT -->
+<script>
+    const nameInput = document.getElementById("nameInput");
+    const welcomeText = document.getElementById("welcomeText");
+    const tagline = document.getElementById("tagline");
+    const loginBtn = document.getElementById("loginBtn");
+    const visitBtn = document.getElementById("visitBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    function applyUser(username) {
+        welcomeText.textContent = `Welcome, ${username}`;
+        tagline.style.display = "none";
+        nameInput.style.display = "none";
+        loginBtn.textContent = "Logged In";
+        loginBtn.style.background = "#0d9b39"; // green
+        visitBtn.style.display = "block";
+        logoutBtn.style.display = "block";
+    }
+
+    function loadUser() {
+        const savedName = localStorage.getItem("focusFuelName");
+        if (savedName) {
+            applyUser(savedName);
+        }
+    }
+
+    loginBtn.addEventListener("click", () => {
+        const username = nameInput.value.trim();
+        if (!username) {
+            alert("Enter your name.");
+            return;
+        }
+        localStorage.setItem("focusFuelName", username);
+        applyUser(username);
+    });
+
+    logoutBtn.addEventListener("click", () => {
+        localStorage.clear();
+        welcomeText.textContent = "Welcome";
+        tagline.style.display = "block";
+        nameInput.style.display = "block";
+        nameInput.value = "";
+        loginBtn.textContent = "Login";
+        loginBtn.style.background = "#ff2121";
+        visitBtn.style.display = "none";
+        logoutBtn.style.display = "none";
+    });
+
+    visitBtn.addEventListener("click", () => {
+        window.location.href = "homepage.html";
+    });
+    
+    loadUser();
+</script>
+
+</body>
+</html>
